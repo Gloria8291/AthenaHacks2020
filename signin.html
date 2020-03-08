@@ -1,0 +1,195 @@
+<html>
+
+<head>
+  <title>Login | WebDev ToDoList</title>
+
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- <link rel="stylesheet" href="index_styles.css"> -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+</head>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<body>
+
+
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/index.php">Speech Adventure Game</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/addlist.php">Play Game</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/login.php">Account</a>
+        </li>
+        
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/signup.php">Sign Up</a> -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/about.html">About</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/logout.php">Logout</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/delete.php">Delete</a> -->
+        <!-- </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://303.itpwebdev.com/~liuglori/ITP_303/final_project/edit.php">Edit</a>
+        </li> -->
+      </ul>
+      
+    </div>
+  </nav>
+
+
+
+
+
+
+
+  <div class="jumbotron">
+    <h1 class="display-5">Log in, sign in, or log out!</h1>
+    <p class="lead"> </p>
+    <hr class="my-4">
+
+    <div id = "formContainer">
+    <div id="header">
+    </div>
+        <input type="email" placeholder="email" id="email"/>
+    <input type="password" placeholder="password" id="password"/>
+    <button onclick="signUp()" id = "signUp"> Sign Up </button>
+    <button onclick="signIn()" id = "signIn"> Sign In </button>
+    <button onclick="signOut()" id = "signOut"> Sign Out </button>
+        <a href="athenagame.html"> play the game!</a>
+    </div>
+
+
+  </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+<script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDRnPWreSNdWz7qKQX-OlMCiCYIuhvx_DE",
+        authDomain: "athenahacks-614f8.firebaseapp.com",
+        databaseURL: "https://athenahacks-614f8.firebaseio.com",
+        projectId: "athenahacks-614f8",
+        storageBucket: "athenahacks-614f8.appspot.com",
+        messagingSenderId: "407304583106",
+        appId: "1:407304583106:web:252610afc2e9dd3ad8485b",
+        measurementId: "G-BKEF375LQH"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      
+      function signUp(){
+      //    const auth = firebase.auth();
+      //    var email = document.getElementById("email").value;
+      //    var password = document.getElementById("password").value;
+      //    console.log(email,password);
+      //    const promise = auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+      //    console.log(promise);
+
+      //       var errorCode = error.code;
+      //       var errorMessage = error.message;
+      //       // [START_EXCLUDE]
+      //       if (errorCode == 'auth/weak-password') {
+      //         alert('The password is too weak.');
+      //       } else {
+      //         alert(errorMessage);
+      //       }
+      //     })
+
+      //    document.getElementById("signUp").innerHTML = "success";
+      //    firebase.database().ref('wo/').update({
+      //    email,
+      //    });
+      // }
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        if (email.length < 4) {
+          alert('Please enter an email address.');
+          return;
+        }
+        if (password.length < 4) {
+          alert('Please enter a password.');
+          return;
+        }
+        // Create user with email and pass.
+        // [START createwithemail]
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          // [END_EXCLUDE]
+        });
+        // [END createwithemail]
+      }
+
+
+      function signIn(){
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          document.getElementById('signIn').disabled = false;
+         });
+      }
+
+
+      function signOut(){
+
+        if (firebase.auth().currentUser) {
+          // [START signout]
+          firebase.auth().signOut();
+          // [END signout]
+        }
+
+      }
+    </script>
+</body>
+</html>
